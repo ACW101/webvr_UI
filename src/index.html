@@ -14,7 +14,8 @@
       <audio id="click-sound" src="/plume.mp3"></audio>
   
       <!-- Images -->
-      !-- Templates -->
+      <img id="dot" src="assets/cross.jpg">
+      <!-- Templates -->
       <script id="placeholder" type="text/html">
         <a-entity content-holder face-towards="target: a-camera"></a-entity>
       </script>
@@ -22,7 +23,7 @@
     </a-assets>
 
 
-    <a-sky radius="10", src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.16.3/assets/grid.png", repeat="40 20", ></a-sky>
+    <a-sky radius="10", src="#dot", repeat="50 25"></a-sky>
     <a-sphere radius="0.01", color="red", position="0 0 0">
     
     <a-entity content-holder="position: 2 1 -2.5; width: 1.5" face-towards="target: a-camera" 
