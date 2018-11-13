@@ -3,7 +3,7 @@ var THREE = AFRAME.THREE
 
 AFRAME.registerComponent("content-holder", {
   schema: {
-    color: {type: 'color', default: "grey"},
+    color: {type: 'color', default: "pink"},
     width: {type: 'number', default: 1},
     height: {type: 'number', default: 1},
     depth: {type: 'number', default: 0.01},
@@ -33,6 +33,9 @@ AFRAME.registerComponent("content-holder", {
 
     this.material = new THREE.MeshBasicMaterial({
       color: data.color,
+      transparent: true,
+      opacity: 0.6
+      //wireframe: true
     });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
