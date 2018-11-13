@@ -9,9 +9,6 @@ require("aframe-ui-widgets");
 require("aframe-event-set-component");
 
 //User Components
-require("./components/change-sky.js");
-require("./components/change-mountains.js");
-require("./components/change-fog.js");
-require("./components/phase-shift.js");
-require("./components/appbar.js");
-require("./components/control.js");
+require("./components/sphere-grid");
+require("./components/content-holder");
+require("./components/face-towards");

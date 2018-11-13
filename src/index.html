@@ -1,42 +1,46 @@
 <html>
 
 <head>
-  <title>WebVR Boilerplate</title>
+  <title>360 Gallery</title>
 </head>
 
 <body>
-  <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
 
-  <a-scene id="scene" vr-mode-ui="enabled: true" physics="gravity:-9.6" antialias="true">
+  <a-scene background="color: #212121">
+
+    <!-- assets: preload resources -->
     <a-assets>
-      <a-mixin id="mycursor" position="0 0 -0.5" raycaster geometry="primitive: ring; radiusOuter: 0.008; radiusInner: 0.005; segmentsTheta: 32"
-        material="color: white; shader: flat" static-body="shape: sphere; sphereRadius: 0.001" super-hands="colliderEvent: raycaster-intersection;colliderEventProperty: els;colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;colliderState:"></a-mixin>
-      <a-mixin id="mytouch" physics-collider phase-shift collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02"
-        super-hands="colliderEvent: collisions; colliderEventProperty: els; colliderEndEvent: collisions; colliderEndEventProperty: clearedEls;colliderState:"></a-mixin>
-      <a-mixin id="resize-obj" hoverable grabbable stretchable draggable dynamic-body="linearDamping:.98. angularDamping:.5"
-        shadow="receive:true;castShadow:true"></a-mixin>
-      <a-mixin id="bat-obj" hoverable grabbable draggable dynamic-body shadow="receive:true;castShadow:true"></a-mixin>
-      <a-mixin id="constraint-obj" hoverable grabbable draggable dynamic-body shadow="receive:true;castShadow:true"></a-mixin>
-      <a-mixin id="damping-obj" hoverable grabbable draggable dynamic-body="linearDamping:.99. angularDamping:.5"
-        shadow="receive:true;castShadow:true"></a-mixin>
-      <a-mixin id="hover-obj" geometry="primitive: box; width: 0.33; height: 0.33; depth: 0.33" hoverable grabbable
-        draggable event-set__hoveron="_event: hover-start; material.opacity: 0.5; transparent: true"
-        event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false" dynamic-body shadow>
-      </a-mixin>
+      <!-- Audio -->
+      <audio id="click-sound" src="/plume.mp3"></audio>
+  
+      <!-- Images -->
+      !-- Templates -->
+      <script id="placeholder" type="text/html">
+        <a-entity content-holder face-towards="target: a-camera"></a-entity>
+      </script>
+      
     </a-assets>
 
-    <a-entity id='cameraWrapper' position="0 0 0">
-      <a-camera>
-      </a-camera>
-    </a-entity>
 
-    <a-entity control id="controller" gearvr-controls></a-entity>
-    <!-- SCENE -->
-    <a-entity position="0 4 0" rotation="-90 0 0" id="night_light" visible="false" light="type:spot;intensity:0.3;penumbra:0.18"></a-entity>
-    ${require('./templates/environment.html')}
-
-    <a-entity id="appbar" appbar="color: #2196f3"></a-entity>
-
+    <a-sky radius="10", src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.16.3/assets/grid.png", repeat="40 20", ></a-sky>
+    <a-sphere radius="0.01", color="red", position="0 0 0">
+    
+    <a-entity content-holder="position: 2 1 -2.5; width: 1.5" face-towards="target: a-camera" 
+      event-set__hover="_event: mouseenter; scale: 1.1 1.1 1" event-set__leave="_event: mouseleave; scale:1 1 1"></a-entity>
+    <a-entity content-holder="position: 0 1 -3.2; width: 1.5" face-towards="target: a-camera" 
+      event-set__hover="_event: mouseenter; scale: 1.1 1.1 1" event-set__leave="_event: mouseleave; scale:1 1 1"></a-entity>
+    <a-entity content-holder="position: -2 1 -2.5; width: 1.5" face-towards="target: a-camera" 
+      event-set__hover="_event: mouseenter; scale: 1.1 1.1 1" event-set__leave="_event: mouseleave; scale:1 1 1"></a-entity>
+    
+    <!-- Camera + Cursor. -->
+    <a-camera>
+      <a-cursor id="cursor">
+        <a-animation begin="click" easing="ease-in" attribute="scale"
+                     fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                     from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+      </a-cursor>
+    </a-camera>
   </a-scene>
 
 </body>
