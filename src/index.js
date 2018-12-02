@@ -9,6 +9,7 @@ require("aframe-ui-widgets");
 require("aframe-event-set-component");
 require("aframe-layout-component");
 require("aframe-animation-component")
+require("aframe-extras");
 
 //User Components
 require("./components/sphere-grid");
