@@ -27,7 +27,7 @@ AFRAME.registerComponent("face-towards", {
 
     //console.log(targetPosition);
     if (time !== null && timeDelta > 0) {
-      el.object3DMap['mesh'].lookAt(direction);
+      el.object3D.lookAt(direction);
       
     }
     

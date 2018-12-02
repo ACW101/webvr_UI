@@ -12,7 +12,7 @@ AFRAME.registerComponent("content-holder", {
     segmentsHeight: {type: 'int', default: 1, min: 1},
     segmentsWidth: {type: 'int', default: 1, min: 1},
     segmentsDepth: {type: 'int', default: 1, min: 1},
-    
+    src: {type: 'string', default: ''}
   },
 
   multiple: true,
@@ -25,16 +25,17 @@ AFRAME.registerComponent("content-holder", {
     this.geometry = new THREE.BoxBufferGeometry(data.width, data.height, data.depth);
     
 
-    //this.texture = new THREE.TextureLoader().load('templates/wood.jpg');
-    //this.texture.crossOrigin = "Anonymous";
-    //this.texture.warpS = THREE.RepeatWrapping;
-    //this.texture.warpT = THREE.RepeatWrapping;
-    //this.texture.repeat.set(1, 1);
+    this.texture = new THREE.TextureLoader().load('https://pbs.twimg.com/profile_images/809318798419525633/wmrHjgdG_400x400.jpg');
+    this.texture.crossOrigin = "Anonymous";
+    this.texture.warpS = THREE.RepeatWrapping;
+    this.texture.warpT = THREE.RepeatWrapping;
+    this.texture.repeat.set(1, 1);
 
     this.material = new THREE.MeshBasicMaterial({
+      map: this.texture,
       color: data.color,
       transparent: true,
-      opacity: 0.6
+      opacity: 0.7
       //wireframe: true
     });
 

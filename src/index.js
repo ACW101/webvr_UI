@@ -7,6 +7,8 @@ require("super-hands");
 require("aframe-teleport-controls");
 require("aframe-ui-widgets");
 require("aframe-event-set-component");
+require("aframe-layout-component");
+require("aframe-animation-component")
 
 //User Components
 require("./components/sphere-grid");
