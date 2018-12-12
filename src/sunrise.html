@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <title>Sunrise</title>
+  <script src="index.js"></script>
+</head>
+
+<body>
+
+  <a-scene background="color: #212121">
+
+    <!-- assets: preload resources -->
+    <a-assets>
+  
+      <!-- Images -->
+      <img id="dot" src="assets/dot.jpg">
+      <!-- Templates -->
+    </a-assets>
+    <a-sky radius="10", src="#dot", repeat="50 25"></a-sky>
+
+    <a-sphere id="origin" radius="0.03", color="blue", position="0 -1 0", link="href: index.html"></a-sphere>
+
+    <!-- Camera + Cursor. -->
+    <a-entity id="cameraWrapper" position="0 0 1">
+      <a-entity camera look-controls wasd-controls>
+        <a-entity cursor
+              position="0 0 -0.1"
+              geometry="primitive: ring; radiusInner: 0.0012; radiusOuter: 0.002"
+              material="color: white; shader: flat"
+              animation__scaledown="property: scale; to: 0.3 0.3 1; dur: 80; easing: easeInOutSine; startEvents: click; dir: alternate; loop: 2">
+        </a-entity>
+      </a-entity>
+      <a-entity control="lowerBound: -5 -5 -25; upperBound: 5 5 25; forwardVelocity: 0.1 0 0.1; backwardVelocity: 0.1 0 0.1" laser-controls oculus-go-controls id="controller" raycaster="far: 1"></a-entity>
+        
+    </a-entity>
+  </a-scene>
+
+</body>
+
+</html>

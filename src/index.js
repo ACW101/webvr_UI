@@ -8,10 +8,10 @@ require("aframe-teleport-controls");
 require("aframe-ui-widgets");
 require("aframe-event-set-component");
 require("aframe-layout-component");
-require("aframe-animation-component")
-require("aframe-extras");
 
 //User Components
 require("./components/sphere-grid");
 require("./components/content-holder");
 require("./components/face-towards");
+require("./components/control");
+require("./components/pinterest-request");

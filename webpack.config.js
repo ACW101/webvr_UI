@@ -9,7 +9,8 @@ const PATHS = {
 
 module.exports = {
   entry: {
-    app: PATHS.app
+    app: PATHS.app,
+    index: './src/index.js',
   },
   output: {
     path: PATHS.build,
@@ -20,6 +21,13 @@ module.exports = {
       title: "A-Frame boilerplate",
       template: `${PATHS.app}/index.html`,
       inject: "head"
+    }),
+    new HtmlWebpackPlugin({
+      title: "sunrise",
+      template: `${PATHS.app}/sunrise.html`,
+      inject: true,
+      chunks: ['index'],
+      filename: 'sunrise.html'
     }),
     new CopyWebpackPlugin([{ from: "src/assets", to: "build/assets" }])
   ],

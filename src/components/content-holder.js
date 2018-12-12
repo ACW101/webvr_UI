@@ -1,5 +1,8 @@
 var AFRAME = require("aframe")
 var THREE = AFRAME.THREE
+let contentHolderClicked = new CustomEvent('contentHolderClicked', {
+  bubbles: true
+})
 
 AFRAME.registerComponent("content-holder", {
   schema: {
@@ -12,7 +15,7 @@ AFRAME.registerComponent("content-holder", {
     segmentsHeight: {type: 'int', default: 1, min: 1},
     segmentsWidth: {type: 'int', default: 1, min: 1},
     segmentsDepth: {type: 'int', default: 1, min: 1},
-    src: {type: 'string', default: ''}
+    src: {type:'selector'}
   },
 
   multiple: true,
@@ -23,9 +26,10 @@ AFRAME.registerComponent("content-holder", {
     //var sceneEl = this.sceneEl;   // refer to scene
 
     this.geometry = new THREE.BoxBufferGeometry(data.width, data.height, data.depth);
+    var src = this.el.getAttribute('src');
     
 
-    this.texture = new THREE.TextureLoader().load('https://pbs.twimg.com/profile_images/809318798419525633/wmrHjgdG_400x400.jpg');
+    /** this.texture = new THREE.TextureLoader().load();
     this.texture.crossOrigin = "Anonymous";
     this.texture.warpS = THREE.RepeatWrapping;
     this.texture.warpT = THREE.RepeatWrapping;
@@ -39,10 +43,23 @@ AFRAME.registerComponent("content-holder", {
       //wireframe: true
     });
 
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
+    this.mesh = new THREE.Mesh(this.geometry, this.material);*/
+    this.mesh = new THREE.Mesh(this.geometry);
     this.mesh.position.copy(data.position);
 
     el.setObject3D('mesh', this.mesh);
+
+    if (src !== null) {
+      this.el.setAttribute('material', 'src', src);
+    }
+    
+
+    el.addEventListener('click', function(event) {
+      console.log(event);
+      el.dispatchEvent(contentHolderClicked, {
+        detail: {entity: el}
+      })
+    });
   },
 
   remove: function () {
